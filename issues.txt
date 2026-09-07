@@ -4,3 +4,8 @@ Telegram when asking any question getting this eerror : ⚠️ Gemini error: LLM
 in Chat in UI taking more time 
 
 also Investment page have issues
+
+
+sometimes caht UI in gives this like response : data: {"chunk": "\n\n[All streaming attempts failed. Please try again later.]"}
+
+
