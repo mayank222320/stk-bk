@@ -1,0 +1,61 @@
+[project]
+name = "stockserver"
+version = "2.0.0"
+description = "StockAI personal stock intelligence platform for Indian markets"
+readme = "README.md"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+pythonpath = ["."]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+exclude = [
+    ".git",
+    ".venv",
+    "venv",
+    "__pycache__",
+    "dist",
+    "build",
+    "features",
+    "test_*.py",
+    "refactor.py",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+    "UP007", # allow X | Y or Optional[X]
+]
+
+[tool.ruff.lint.per-file-ignores]
+"main.py" = ["F401", "W291", "W292", "W293", "I001"]
+
+[tool.mypy]
+python_version = "3.12"
+mypy_path = "."
+warn_return_any = false
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+exclude = [
+    "venv",
+    "dist",
+    "build",
+]

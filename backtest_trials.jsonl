@@ -1,0 +1,11 @@
+{"type": "OOS", "start": "2019-01-01", "end": "2019-06-30", "metrics": {"trades": 6, "expectancy": 0.3778754752096725, "win_rate": 0.3333333333333333}}
+{"type": "OOS", "start": "2019-07-01", "end": "2019-12-31", "metrics": {"trades": 8, "expectancy": 0.42819987118533576, "win_rate": 0.625}}
+{"type": "OOS", "start": "2020-01-01", "end": "2020-06-30", "metrics": {"trades": 5, "expectancy": 1.1836181116179627, "win_rate": 0.8}}
+{"type": "OOS", "start": "2020-07-01", "end": "2020-12-31", "metrics": {"trades": 4, "expectancy": 0.5, "win_rate": 0.5}}
+{"type": "OOS", "start": "2021-01-01", "end": "2021-06-30", "metrics": {"trades": 11, "expectancy": 0.6277284938795762, "win_rate": 0.7272727272727273}}
+{"type": "OOS", "start": "2021-07-01", "end": "2021-12-31", "metrics": {"trades": 4, "expectancy": 1.6199390351807132, "win_rate": 1.0}}
+{"type": "OOS", "start": "2022-01-01", "end": "2022-06-30", "metrics": {"trades": 11, "expectancy": -0.5292015999789926, "win_rate": 0.2727272727272727}}
+{"type": "OOS", "start": "2022-07-01", "end": "2022-12-31", "metrics": {"trades": 10, "expectancy": 0.6127842750158025, "win_rate": 0.7}}
+{"type": "OOS", "start": "2023-01-01", "end": "2023-06-30", "metrics": {"trades": 9, "expectancy": 0.10691929349074242, "win_rate": 0.5555555555555556}}
+{"type": "OOS", "start": "2023-07-01", "end": "2023-12-31", "metrics": {"trades": 9, "expectancy": 0.7614576891607291, "win_rate": 0.8888888888888888}}
+{"type": "SHUFFLED_CONTROL", "metrics": {"trades": 95, "expectancy": -0.23974779682919406, "win_rate": 0.30526315789473685}}

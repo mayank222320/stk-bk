@@ -1,0 +1,29 @@
+Python
+
+FastAPI (or Flask)
+
+Uvicorn (or Gunicorn)
+
+yfinance
+
+nsepython
+
+pandas
+
+numpy
+
+pandas-ta (or TA-Lib)
+
+MongoDB Atlas (M0 Free Tier)
+
+pymongo (or motor for async FastAPI)
+
+google-generativeai (Google Gemini 1.5 Pro via Google AI Studio)
+
+pydantic
+
+python-telegram-bot (or requests for pure HTTP Webhooks)
+
+ntfy HTTP API Protocol
+
+PyPDF2 (or pdfplumber / pypdf to parse and extract text from your technical PDFs)
