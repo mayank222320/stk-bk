@@ -1,0 +1,22 @@
+module:
+  id: 21
+  name: Data Freshness & Timestamp Rules
+  tags: [data, freshness, timestamp, integrity, core]
+states: [LIVE, DELAYED, LAST_CLOSE, STALE, UNAVAILABLE]
+budgets_in_session_seconds:
+  quote: 900
+  option_chain: 1800
+  fii_dii: 129600        # T-1 is normal
+  fundamentals: 7776000  # one quarter
+  news: 432000           # 5 days
+  indicators: null       # always LAST_CLOSE - never call these live
+session_states: [PRE_OPEN, OPEN, POST, CLOSED, HOLIDAY, WEEKEND]
+rules:
+  - Never describe data as live, real-time or exchange-verified unless its state is LIVE.
+  - Always open an analysis with AS-OF timestamp and SESSION state.
+  - Indicators are computed from the last daily close. Say so.
+  - A STALE or UNAVAILABLE binding input (quote, indicators) forces WAIT.
+  - Each non-binding stale input reduces data_confidence by 2.
+  - Outside market hours, every price is LAST_CLOSE. State the date of that close.
+  - Never fill a missing value from memory or from a general sense of the price.
+  - If a number is not in the supplied data blocks, it is UNAVAILABLE.

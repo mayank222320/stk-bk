@@ -1,0 +1,38 @@
+module:
+  id: 25
+  name: Failure Library (grows from the trade journal)
+  tags: [failure, lessons, postmortem, core]
+  maintenance: >
+    Append one entry per losing or badly-managed trade. Retrieve entries matching
+    the candidate's setup_type before finalising any recommendation.
+seed_entries:
+  - id: F001
+    pattern: Breakout bought while ADX < 20
+    outcome: Price returned into the base within 2 sessions
+    lesson: Trend strength is a precondition, not a nice-to-have. VETO below 20.
+    tags: [breakout, adx, chop]
+  - id: F002
+    pattern: Entry taken 4+ ATR above EMA20 on a gap-up
+    outcome: Stopped out on the mean-reversion day
+    lesson: Extension > 3 ATR means wait for the pullback. Never chase a gap.
+    tags: [chase, extension, gap]
+  - id: F003
+    pattern: Position held through an earnings date inside the hold window
+    outcome: Gap through the stop; realised loss far exceeded 1R
+    lesson: Results within 5 trading days is a hard veto. Stops do not work across gaps.
+    tags: [earnings, gap_risk, event]
+  - id: F004
+    pattern: Rising price with falling OI read as strength
+    outcome: Short covering exhausted; no follow-through
+    lesson: Price up + OI down is not accumulation. Require long build-up.
+    tags: [derivatives, oi, false_strength]
+  - id: F005
+    pattern: MON100 bought on a Nasdaq dip while the ETF traded at a wide premium
+    outcome: Index recovered but the premium compressed; rupee return lagged
+    lesson: Decompose index vs currency vs premium before deploying.
+    tags: [mon100, etf, premium]
+  - id: F006
+    pattern: Recommendation issued on a stale quote after a failed fetch
+    outcome: Entry zone and stop were both wrong by more than 2%
+    lesson: A stale binding input forces WAIT. Never trade an unverified price.
+    tags: [data, freshness, integrity]

@@ -1,0 +1,65 @@
+module:
+  id: 19
+  name: Swing Trading Playbook (2-10 days)
+  tags: [swing, setup, entry, exit, stop, target, core]
+horizon:
+  min_days: 2
+  max_days: 10
+  hard_cap: 10
+  rule: >
+    Every actionable call states a validity horizon within 2-10 trading days.
+    At day 10 the position is force-reassessed, never silently held.
+setups:
+  breakout:
+    definition: Close above a base high formed over 15-40 days
+    requires:
+      - base_quality in [A, B]
+      - adx_14 > 25
+      - volume_ratio > 1.5 on the breakout candle
+      - vsa_class not in [NO_DEMAND, DISTRIBUTION_SUPPLY]
+      - rs_rating >= 70
+    entry_zone: breakout_level to breakout_level * 1.02
+    do_not_chase: extension_atr > 3 from ema_20
+    stop: below base low, or 1.5x ATR, whichever is tighter but outside noise
+    targets: [1.5R, 2.5R, 4R]     # cap T3 at a realistic ATR-based distance
+    invalidation: close back inside the base on above-average volume
+    typical_hold_days: 3-8
+  pullback:
+    definition: Uptrend retracing to EMA20 / prior swing high / value area
+    requires:
+      - structure == HH_HL
+      - adx_14 > 20
+      - rsi_14 between 40 and 55
+      - vsa_class in [NO_SUPPLY, ABSORPTION_STOPPING_VOLUME] preferred
+      - weekly_trend == above_weekly_ema20
+    entry_zone: ema_20 +/- 1%, or the 38.2-50% fib of the last leg
+    stop: below last_swing_low
+    targets: [prior swing high, 1.618 extension, measured move]
+    invalidation: close below last_swing_low, or EMA50 breach on volume
+    typical_hold_days: 4-10
+  reversal:
+    definition: Downtrend exhaustion with a confirmed higher low
+    requires:
+      - vsa_class == SELLING_CLIMAX in the last 10 sessions
+      - a confirmed higher low after the climax
+      - obv_divergence == positive
+      - piotroski >= 5     # do not catch a falling knife with weak fundamentals
+    stop: below the climax low
+    note: Lowest win rate of the three. Half size only.
+    typical_hold_days: 5-10
+  momentum_continuation:
+    definition: Leadership stock resuming after a shallow 3-8 day rest
+    requires: [rs_rating >= 85, adx_14 between 25 and 40, pct_from_52w_high < 8]
+    typical_hold_days: 2-6
+management:
+  after_t1: book 40%, move stop to breakeven
+  after_t2: book 40%, trail remainder below prior swing low or EMA20
+  trailing: ratchet upward only, never loosen a stop
+  time_exit: at day 10 force EXIT or a documented re-entry decision
+  overnight: swing positions are held overnight by design; gap risk is priced in via sizing
+forbidden:
+  - Intraday square-off advice ("exit before 3:10 PM") for a swing position
+  - Averaging down on a losing position
+  - Widening a stop after entry
+  - Entering when results fall inside the intended hold window
+  - Any recommendation without a stop and a stated invalidation

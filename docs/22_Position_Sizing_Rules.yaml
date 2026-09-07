@@ -1,0 +1,27 @@
+module:
+  id: 22
+  name: Position Sizing & Portfolio Risk
+  tags: [sizing, risk, portfolio, kelly, core]
+per_trade_risk_pct: {conservative: 0.5, normal: 1.0, aggressive: 2.0, never_exceed: 2.0}
+formula:
+  risk_amount: capital * risk_pct / 100 * regime_multiplier
+  quantity: floor(risk_amount / (entry - stop))
+  notional: quantity * entry
+caps:
+  max_portfolio_heat_pct: 5.0     # sum of open risk across all positions
+  max_open_positions: 5
+  max_per_sector: 2
+  max_single_stock_pct: 15
+  correlation_warn_above: 0.7     # 60-day vs an existing position
+regime_multiplier: {RISK_ON: 1.0, NEUTRAL: 0.5, RISK_OFF: 0.0}
+kelly:
+  formula: f = win_rate - (1 - win_rate) / (avg_win_r / avg_loss_r)
+  use: half_kelly
+  cap_at: per_trade_risk_pct.never_exceed
+  min_sample_trades: 30
+rules:
+  - Never size from analytical confidence. Size from stop distance and volatility.
+  - Capital deployed is not exposure. State notional separately when leveraged.
+  - Reject any trade whose R:R to T1 is below 1:2.
+  - If a gate was bypassed by exception, reduce size and say by how much.
+  - After 3 consecutive losses or a 10% account drawdown, halve size for a week.
