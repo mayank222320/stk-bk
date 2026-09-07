@@ -9,3 +9,6 @@ also Investment page have issues
 sometimes caht UI in gives this like response : data: {"chunk": "\n\n[All streaming attempts failed. Please try again later.]"}
 
 
+API_TOKEN=5a6fe4dc6262734d74c5e4bba6026b6de5fd687ceea80c6161904932446ca284  
+
+https://stockai-e1fr.onrender.com/ 
